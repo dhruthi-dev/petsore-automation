@@ -1,0 +1,42 @@
+name: CI Pipeline for PetStore Automation
+
+# Run the workflow on pushes to main or PRs
+on:
+  push:
+    branches:
+      - feature/Dhruthi-CBATest
+      - main  
+  pull_request:
+    branches:
+      - feature/Dhruthi-CBATest
+      - main
+
+# Define the job
+jobs:
+  test:
+    runs-on: macos-latest  # Use the latest macos environment for testing
+    
+    steps:
+      # Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'  # Specify the Python version
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install -e .
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  
+
+      # Run tests using pytest
+      - name: Run tests
+        run: |
+          pytest tests/  # Run tests in the `tests/` directory
+
+
