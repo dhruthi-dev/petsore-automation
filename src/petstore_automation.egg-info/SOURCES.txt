@@ -1,0 +1,10 @@
+README.md
+setup.py
+src/framework/__init__.py
+src/framework/api_client.py
+src/framework/endpoints.py
+src/framework/utils.py
+src/petstore_automation.egg-info/PKG-INFO
+src/petstore_automation.egg-info/SOURCES.txt
+src/petstore_automation.egg-info/dependency_links.txt
+src/petstore_automation.egg-info/top_level.txt

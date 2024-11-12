@@ -3,18 +3,32 @@ This contains pytest automation for petstore swagger link - https://petstore.swa
 
 ## Project Structure
 ```plaintext
-pet-api-automation/
+petstore-automation/
+│
 ├── src/
-│   ├── api_client.py           # Defines API client methods
-│   ├── config.py               # Configuration file for API details
-│   └── utils.py                # Helper utilities, like data generation
+│   ├── framework/                # Core framework for API interactions and test utilities
+│   │   ├── __init__.py
+│   │   ├── api_client.py         # API client to make requests to the PetStore API
+│   │   ├── endpoints.py          # Contains endpoint URLs for the PetStore API
+│   │   └── utils.py              # Utility functions used across tests
+│   │
+│   ├── config.py                 # Configuration file for the project (e.g., base URLs, settings)
+│   └── __init__.py               # Marks the directory as a Python package
+│
 ├── tests/
-│   ├── test_pet_endpoint.py    # Test suite for the /pet endpoint
-│   ├── conftest.py             # Fixtures for test setup/teardown
-│   └── data/
-│       └── pet_data.json       # Test data
-├── requirements.txt            # Required dependencies
-└── pytest.ini                  # Pytest configuration
+│   ├── data/                     # Contains test data for different scenarios
+│   │   └── test_data.py          # Test data for pets and invalid data
+│   │
+│   ├── pet/                      # Pet-related tests
+│   │   ├── test_pet_creation.py  # Tests for creating pets and updating images
+│   │   ├── test_pet_update.py    # Tests for updating pet details
+│   │   ├── test_pet_deletion.py  # Tests for deleting pets
+│   │   └── test_pet_retrieval.py # Tests for retrieving pet details
+│   └── __init__.py               # Marks the directory as a Python package
+│   └── conftest.py               # Contains pytest hooks and fixtures
+│
+├── pytest.ini                    # Pytest configuration file
+└── requirements.txt              # Project dependencies
 ```
 ## Pre-requisites 
 Python 3.7+
@@ -42,6 +56,6 @@ To run tests in a specific group execute the command - `pytest -m <marker name>`
 
 ## Writing New Tests
 1. Create a new test file in the tests/ directory.
-2. Use the provided API client (PetApiClient in src/api_client.py) and fixtures from conftest.py for test setup and teardown.
+2. Use the provided API client (PetApiClient in api_client.py) and fixtures from conftest.py for test setup and teardown.
 3. Follow the naming convention test_<feature>.py and add methods prefixed with test_ for pytest to recognize them.
 
